@@ -4,14 +4,13 @@ import dev.davivieira.domain.entity.Event;
 import dev.davivieira.domain.vo.Activity;
 import dev.davivieira.domain.vo.EventId;
 import dev.davivieira.domain.vo.Protocol;
-
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class RegexEventParser implements EventParser{
+public final class RegexEventParser implements EventParser {
 
     @Override
     public Event parseEvent(String event) {

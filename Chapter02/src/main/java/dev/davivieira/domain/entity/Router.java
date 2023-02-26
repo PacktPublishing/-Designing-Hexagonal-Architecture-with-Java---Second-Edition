@@ -1,20 +1,21 @@
 package dev.davivieira.domain.entity;
 
-import dev.davivieira.domain.vo.*;
-
+import dev.davivieira.domain.vo.IP;
+import dev.davivieira.domain.vo.Network;
+import dev.davivieira.domain.vo.RouterId;
+import dev.davivieira.domain.vo.RouterType;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.random.RandomGenerator;
 
 public class Router {
 
     private final RouterType routerType;
-    private final RouterId routerid;
+    private final RouterId routerId;
     private Switch networkSwitch;
 
-    public Router(RouterType routerType, RouterId routerid){
+    public Router(RouterType routerType, RouterId routerId) {
         this.routerType = routerType;
-        this.routerid = routerid;
+        this.routerId = routerId;
     }
 
     public static Predicate<Router> filterRouterByType(RouterType routerType){
@@ -48,10 +49,10 @@ public class Router {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Router{" +
-                "type=" + routerType +
-                ", id=" + routerid +
+                "routerType=" + routerType +
+                ", routerId=" + routerId +
                 '}';
     }
 }

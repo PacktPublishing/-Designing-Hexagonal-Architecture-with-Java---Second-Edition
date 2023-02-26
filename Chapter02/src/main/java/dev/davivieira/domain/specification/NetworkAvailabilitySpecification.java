@@ -6,9 +6,9 @@ import dev.davivieira.domain.vo.Network;
 
 public final class NetworkAvailabilitySpecification extends AbstractSpecification<Router> {
 
-    private IP address;
-    private String name;
-    private int cidr;
+    private final IP address;
+    private final String name;
+    private final int cidr;
 
     public NetworkAvailabilitySpecification(IP address, String name, int cidr) {
         this.address = address;
@@ -24,9 +24,10 @@ public final class NetworkAvailabilitySpecification extends AbstractSpecificatio
     private boolean isNetworkAvailable(Router router) {
         var availability = true;
         for (Network network : router.retrieveNetworks()) {
-            if(network.getAddress().equals(address) && network.getName().equals(name) && network.getCidr() == cidr)
+            if (network.address().equals(address) && network.name().equals(name) && network.cidr() == cidr) {
                 availability = false;
-            break;
+                break;
+            }
         }
         return availability;
     }

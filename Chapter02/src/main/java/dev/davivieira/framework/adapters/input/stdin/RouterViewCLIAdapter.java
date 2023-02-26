@@ -10,7 +10,7 @@ import java.util.List;
 
 public class RouterViewCLIAdapter {
 
-    RouterViewUseCase routerViewUseCase;
+    private RouterViewUseCase routerViewUseCase;
 
     public RouterViewCLIAdapter() {
         setAdapters();
