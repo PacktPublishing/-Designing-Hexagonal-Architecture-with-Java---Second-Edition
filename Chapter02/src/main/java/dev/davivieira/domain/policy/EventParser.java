@@ -1,7 +1,6 @@
 package dev.davivieira.domain.policy;
 
 import dev.davivieira.domain.entity.Event;
-
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 

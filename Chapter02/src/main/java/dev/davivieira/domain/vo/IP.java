@@ -5,7 +5,7 @@ public class IP {
     private final String address;
     private final Protocol protocol;
 
-    private IP(String address) {
+    public IP(String address) {
       if(address == null)
           throw new IllegalArgumentException("Null IP address");
       this.address = address;

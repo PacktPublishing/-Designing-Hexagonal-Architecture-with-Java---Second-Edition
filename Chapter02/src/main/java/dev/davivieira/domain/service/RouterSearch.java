@@ -1,7 +1,6 @@
 package dev.davivieira.domain.service;
 
 import dev.davivieira.domain.entity.Router;
-
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
