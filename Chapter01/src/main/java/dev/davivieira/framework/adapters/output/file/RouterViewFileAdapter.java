@@ -34,7 +34,7 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
                 Router router = new Router(RouterType.valueOf(type),RouterId.of(id));
                 routers.add(router);
             });
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return routers;
