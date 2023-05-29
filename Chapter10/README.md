@@ -13,3 +13,11 @@ mvn clean package
 java -jar bootstrap/target/bootstrap-1.0-SNAPSHOT-runner.jar
 ```
 
+
+**Sample requests**
+```
+curl -vv -H "Content-Type: application/json" -d  '{"field": "item-a", "value": 20}' localhost:8080/app/create-entity
+```
+```
+curl -s localhost:8080/app/get-all-entities | jq
+```
