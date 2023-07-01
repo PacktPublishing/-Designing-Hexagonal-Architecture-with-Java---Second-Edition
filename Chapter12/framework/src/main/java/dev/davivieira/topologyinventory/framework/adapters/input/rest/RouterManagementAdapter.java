@@ -94,11 +94,11 @@ public class RouterManagementAdapter {
     @Path("/{routerId}/from/{coreRouterId}")
     @Operation(operationId = "removeRouterFromCoreRouter", description = "Remove a router from a core router")
     public Uni<Response> removeRouterFromCoreRouter(
-            @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
+            @PathParam("routerId") Id routerId, @PathParam("coreRouterId") Id coreRouterId) {
         Router router = routerManagementUseCase
-                .retrieveRouter(Id.withId(routerId));
+                .retrieveRouter(routerId);
         CoreRouter coreRouter = (CoreRouter) routerManagementUseCase
-                .retrieveRouter(Id.withId(coreRouterId));
+                .retrieveRouter(coreRouterId);
 
         return Uni.createFrom()
                 .item(routerManagementUseCase.

@@ -37,7 +37,6 @@ public class RouterManagementAdapterTest {
                 .then()
                 .statusCode(200)
                 .extract()
-                .response()
                 .asString();
         var actualRouterId = getRouterDeserialized(routerStr).getId().getUuid().toString();
         assertEquals(expectedRouterId, actualRouterId);

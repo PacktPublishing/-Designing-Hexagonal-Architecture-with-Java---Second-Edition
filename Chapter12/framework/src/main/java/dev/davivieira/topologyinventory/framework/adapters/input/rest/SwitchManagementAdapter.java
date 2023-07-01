@@ -48,7 +48,7 @@ public class SwitchManagementAdapter {
     @Path("/create/{edgeRouterId}")
     @Operation(operationId = "createAndAddSwitchToEdgeRouter", description = "Create switch and add to an edge router")
     public Uni<Response> createAndAddSwitchToEdgeRouter(
-            CreateSwitch createSwitch, @PathParam("edgeRouterId") String edgeRouterId
+            CreateSwitch createSwitch, @PathParam("edgeRouterId") Id edgeRouterId
     ) {
         Switch newSwitch = switchManagementUseCase.
                 createSwitch(
@@ -57,7 +57,7 @@ public class SwitchManagementAdapter {
                         IP.fromAddress(createSwitch.getIp()),
                         createSwitch.getLocation(),
                         createSwitch.getSwitchType());
-        Router edgeRouter = routerManagementUseCase.retrieveRouter(Id.withId(edgeRouterId));
+        Router edgeRouter = routerManagementUseCase.retrieveRouter(edgeRouterId);
         if(!edgeRouter.getRouterType().equals(RouterType.EDGE))
             throw new UnsupportedOperationException("Please inform the id of an edge router to add a switch");
         Router router = switchManagementUseCase.addSwitchToEdgeRouter(newSwitch, (EdgeRouter) edgeRouter);
@@ -74,10 +74,10 @@ public class SwitchManagementAdapter {
     @Path("/{switchId}/from/{edgeRouterId}")
     @Operation(operationId = "removeSwitch", description = "Retrieve a router from the network inventory")
     public Uni<Response> removeSwitchFromEdgeRouter(
-            @PathParam("switchId") String switchId, @PathParam("edgeRouterId") String edgeRouterId) {
+            @PathParam("switchId") Id switchId, @PathParam("edgeRouterId") Id edgeRouterId) {
         EdgeRouter edgeRouter = (EdgeRouter) routerManagementUseCase
-                .retrieveRouter(Id.withId(edgeRouterId));
-        Switch networkSwitch = edgeRouter.getSwitches().get(Id.withId(switchId));
+                .retrieveRouter(edgeRouterId);
+        Switch networkSwitch = edgeRouter.getSwitches().get(switchId);
         Router router = switchManagementUseCase
                 .removeSwitchFromEdgeRouter(networkSwitch, edgeRouter);
 
