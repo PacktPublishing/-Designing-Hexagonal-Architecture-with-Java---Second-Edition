@@ -22,13 +22,9 @@ public final class NetworkAvailabilitySpecification extends AbstractSpecificatio
     }
 
     private boolean isNetworkAvailable(Router router) {
-        var availability = true;
-        for (Network network : router.retrieveNetworks()) {
-            if (network.getAddress().equals(address) && network.getName().equals(name) && network.getCidr() == cidr) {
-                availability = false;
-                break;
-            }
-        }
-        return availability;
+        return router.retrieveNetworks().stream().noneMatch(
+                network -> network.address().equals(address) &&
+                        network.name().equals(name) &&
+                        network.cidr() == cidr);
     }
 }
