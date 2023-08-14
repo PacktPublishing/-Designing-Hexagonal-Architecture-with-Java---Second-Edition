@@ -9,6 +9,6 @@ mvn clean test
 
 *To test the layered architecture*
 ```
-# Enter into the hexagonal directory
+# Enter into the layered directory
 mvn clean test
 ```
