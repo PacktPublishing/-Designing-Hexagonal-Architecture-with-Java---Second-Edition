@@ -1,7 +1,6 @@
 package dev.davivieira.framework.adapters.output.kafka;
 
 import dev.davivieira.application.ports.output.NotifyEventOutputPort;
-import dev.davivieira.framework.adapters.input.rest.RouterNetworkRestAdapter;
 import dev.davivieira.framework.adapters.input.websocket.WebSocketClientAdapter;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -41,27 +40,27 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
 
     private static boolean sendToWebsocket;
 
-    private static Producer<Long, String> createProducer(){
-        Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKERS);
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, CLIENT_ID);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 3000);
-        return new KafkaProducer<>(props);
+    private static Producer<Long, String> getProducer(){
+        Properties properties = new Properties();
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKERS);
+        properties.put(ProducerConfig.CLIENT_ID_CONFIG, CLIENT_ID);
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 3000);
+        return new KafkaProducer<>(properties);
     }
 
-    public static Consumer<Long, String> createConsumer(){
-        Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKERS);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID_CONFIG);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, OFFSET_RESET_EARLIER);
+    public static Consumer<Long, String> getConsumer(){
+        Properties properties = new Properties();
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKERS);
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID_CONFIG);
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, OFFSET_RESET_EARLIER);
 
-        Consumer<Long, String> consumer = new KafkaConsumer<>(props);
+        Consumer<Long, String> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Collections.singletonList(TOPIC_NAME));
         return consumer;
     }
@@ -124,8 +123,8 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
             instance = new NotifyEventKafkaAdapter();
         }
         sendToWebsocket = true;
-        producer = (KafkaProducer<Long, String>) createProducer();
-        consumer = (KafkaConsumer<Long, String>) createConsumer();
+        producer = (KafkaProducer<Long, String>) getProducer();
+        consumer = (KafkaConsumer<Long, String>) getConsumer();
         return instance;
     }
 }

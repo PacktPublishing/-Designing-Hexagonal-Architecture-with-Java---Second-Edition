@@ -16,16 +16,17 @@ public class WebSocketClientAdapter extends org.java_websocket.client.WebSocketC
 
     @Override
     public void onOpen(ServerHandshake handshake) {
-        System.out.println("opened connection");
+        System.out.println("Connection has opened");
     }
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.println("closed connection");
+        System.out.println("Connection has closed");
     }
 
     @Override
-    public void onError(Exception ex) {
-        ex.printStackTrace();
+    public void onError(Exception e) {
+        System.out.println("An error occurred. Check the exception below:");
+        e.printStackTrace();
     }
 }
