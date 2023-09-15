@@ -21,6 +21,10 @@ public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
         this.routerNetworkUseCase = routerNetworkUseCase;
     }
 
+    /**
+     * When implementing a REST adapter, the processRequest method receives an Object type parameter
+     * that is always cast to an HttpServer type.
+     */
     @Override
     public Router processRequest(Object requestParams){
         Map<String, String> params = new HashMap<>();
