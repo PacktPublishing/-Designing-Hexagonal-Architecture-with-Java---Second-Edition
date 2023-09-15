@@ -1,6 +1,8 @@
 # Chapter 17 - Good Designing Practices for your Hexagonal Application
 Following are the instructions to test the code samples.
 
+Make sure you have Docker running before executing the following commands.
+
 You need to run these commands from within the chapter 17 directory:
 
 **To generate an Uber Jar and start the application**
