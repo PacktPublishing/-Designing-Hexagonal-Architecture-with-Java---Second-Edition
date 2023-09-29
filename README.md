@@ -59,4 +59,4 @@ With the following software and hardware list you can run all code files present
 
 ## Get to Know the Author
 **Davi Vieira**
-Davi Vieira is a software craftsman with a vested interest in the challenges faced by large enterprises in software design, development, and architecture. He has more than 10 years of experience constructing and maintaining complex, long-lasting, and mission-critical systems using object-oriented languages. He values the good lessons and the software development tradition left by others who came before him. Inspired by this software tradition, he develops and evolves his ideas.
+is a software craftsman with a vested interest in the challenges faced by large enterprises in software design, development, and architecture. He has more than 10 years of experience constructing and maintaining complex, long-lasting, and mission-critical systems using object-oriented languages. He values the good lessons and the software development tradition left by others who came before him. Inspired by this software tradition, he develops and evolves his ideas.
